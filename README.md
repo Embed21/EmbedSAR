@@ -1,5 +1,5 @@
 # EmbedSAR by Embed21
-EmbedSAR is the first open source AutoSAR implementation for ECUs. It is mainly targeting the automotive sector, but the implementation can be taken over to other secotors as well. Almost all the current AutoSAR stacks that are currently in the market use huge amount of CPU runtime, which doesn't let any free time for process the main functions of an ECU.
+EmbedSAR is the first open source AutoSAR 4.3 implementation for ECUs. It is mainly targeting the automotive sector, but the implementation can be taken over to other secotors as well. Almost all the current AutoSAR stacks that are currently in the market use huge amount of CPU runtime, which doesn't let any free time for process the main functions of an ECU.
 
 We believe that AutoSAR specification in itself is a good reference that all engineers can use, but EmbedSAR will give the developer 2 options:
 - Follow all AutoSAR specification, which will result to high CPU usage, hence not enough free CPU / ROM / RAM usage for futher ECU functions
