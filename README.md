@@ -6,8 +6,8 @@ We believe that AutoSAR specification in itself is a good reference that all eng
 - Follow AutoSAR specification with some deviation, which reduces the CPU / ROM / RAM usage of the AutoSAR stack, hence provides more CPU usage for extra function that used needs to implement.
 
 If you have any questions regarding EmbedSAR or configuration parameters, please don't hesitate to contact us at:
-infos@embed21.com
+info@embed21.com
 
 Mile stone 1: CAN COM Stack
-- Implementing the AutoSAR CAN COM Stack
+- Implementing CAN Interface (CAN_IF)
 - Designing a basic configuration tool for the implemented comstack
