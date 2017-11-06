@@ -8,6 +8,6 @@ We believe that AutoSAR specification in itself is a good reference that all eng
 If you have any questions regarding EmbedSAR or configuration parameters, please don't hesitate to contact us at:
 infos@embed21.com
 
-Mile stone 1: (CAN COM Stack)
--Implementing the AutoSAR CAN COM Stack
--Designing a basic configuration tool for the implemented comstack
+Mile stone 1 - CAN COM Stack
+1.Implementing the AutoSAR CAN COM Stack
+2.Designing a basic configuration tool for the implemented comstack
