@@ -12,9 +12,17 @@ Parameters (in):	ConfigPtr Pointer to configuration parameter set, used e.g. for
 Parameters (inout):	None
 Parameters (out):	None
 Return value:		None
-Description:		This service Initializes internal and
+Description:		This service Initializes internal and external interfaces of the CAN Interface
+					for the further processing.
 */
 void CanIf_Init(const CanIf_ConfigType* ConfigPtr)
+{
+	/*
+	[SWS_CANIF_00085]:
+	The service CanIf_Init() shall initialize the global variables
+	and data structures of the CanIf including flags and buffers.
+	*/
+}
 
 /*
 [SWS_CanTrcv_91001]
@@ -31,6 +39,8 @@ Return value:		None
 Description:		De-initializes the CanIf module.
 */
 void CanIf_DeInit(void)
+{
+}
 
 /*
 [SWS_CANIF_00003]
@@ -46,12 +56,16 @@ Parameters (in):	ControllerId Abstracted CanIf ControllerId which is assigned to
 					ControllerMode Requested mode transition
 Parameters (inout):	None
 Parameters (out):	None
-Return value:		Std_ReturnType E_OK: Controller mode request has been accepted
-					E_NOT_OK: Controller mode request has not been accepted
+Return value:		Std_ReturnType:
+						E_OK: Controller mode request has been accepted
+						E_NOT_OK: Controller mode request has not been accepted
 Description:		This service calls the corresponding CAN Driver service for changing of
 					the CAN controller mode.
 */
 Std_ReturnType CanIf_SetControllerMode(uint8 ControllerId, Can_ControllerStateType ControllerMode)
+{
+	return E_OK;
+}
 
 /*
 [SWS_CANIF_00229]
@@ -66,12 +80,16 @@ Parameters (in):	ControllerId Abstracted CanIf ControllerId which is assigned to
 Parameters (inout):	None
 Parameters (out):	ControllerModePtr Pointer to a memory location, where the current
 					mode of the CAN controller will be stored.
-Return value: 		Std_ReturnType E_OK: Controller mode request has been accepted.
-					E_NOT_OK: Controller mode request has not been accepted.
+Return value: 		Std_ReturnType:
+						E_OK: Controller mode request has been accepted.
+						E_NOT_OK: Controller mode request has not been accepted.
 Description:		This service calls the corresponding CAN Driver service for obtaining the
 					current status of the CAN controller.
 */
 Std_ReturnType CanIf_GetControllerMode(uint8 ControllerId, Can_ControllerStateType* ControllerModePtr)
+{
+	return E_OK;
+}
 
 /*
 [SWS_CANIF_91001]
@@ -86,12 +104,16 @@ Parameters (in):	ControllerId Abstracted CanIf ControllerId which is assigned to
 Parameters (inout):	None
 Parameters (out):	ErrorStatePtr Pointer to a memory location, where the error state
 					of the CAN controller will be stored.
-Return value:		Std_ReturnType E_OK: Error state request has been accepted.
-					E_NOT_OK: Error state request has not been accepted.
+Return value:		Std_ReturnType:
+						E_OK: Error state request has been accepted.
+						E_NOT_OK: Error state request has not been accepted.
 Description:		This service calls the corresponding CAN Driver service for obtaining the
 					error state of the CAN controller.
 */
 Std_ReturnType CanIf_GetControllerErrorState(uint8 ControllerId, Can_ErrorStateType* ErrorStatePtr)
+{
+	return E_OK;
+}
 
 /*
 [SWS_CANIF_00005]
@@ -105,11 +127,15 @@ Parameters (in):	TxPduId Identifier of the PDU to be transmitted
 					PduInfoPtr Length of and pointer to the PDU data and pointer to MetaData.
 Parameters (inout):	None
 Parameters (out):	None
-Return value:		Std_ReturnType E_OK: Transmit request has been accepted.
-					E_NOT_OK: Transmit request has not been accepted.
+Return value:		Std_ReturnType:
+						E_OK: Transmit request has been accepted.
+						E_NOT_OK: Transmit request has not been accepted.
 Description:		Requests transmission of a PDU.
 */
 Std_ReturnType CanIf_Transmit(PduIdType TxPduId, const PduInfoType* PduInfoPtr)
+{
+	return E_OK;
+}
 
 /*
 [SWS_CANIF_00520]
@@ -121,13 +147,16 @@ Reentrancy:			Reentrant for different PduIds. Non reentrant for the same PduId.
 Parameters (in):	TxPduId Identification of the PDU to be cancelled.
 Parameters (inout):	None
 Parameters (out):	None
-Return value:		Std_ReturnType E_OK: Cancellation was executed successfully by
-						the destination module.
-					E_NOT_OK: Cancellation was rejected by the destination module.
+Return value:		Std_ReturnType
+						E_OK: Cancellation was executed successfully by	the destination module.
+						E_NOT_OK: Cancellation was rejected by the destination module.
 Description:		Requests cancellation of an ongoing transmission of a PDU in a lower
 					layer communication module.
 */
 Std_ReturnType CanIf_CancelTransmit(PduIdType TxPduId)
+{
+	return E_OK;
+}
 
 /*
 [SWS_CANIF_00194]
@@ -145,60 +174,66 @@ Parameters (inout):	None
 Parameters (out):	CanIfRxInfoPtr Contains the length (SduLength) of the received
 					PDU, a pointer to a buffer (SduDataPtr) containing
 					the PDU, and the MetaData related to this PDU.
-Return value:		Std_ReturnType E_OK: Request for L-SDU data has been accepted
-					E_NOT_OK: No valid data has been received
+Return value:		Std_ReturnType:
+						E_OK: Request for L-SDU data has been accepted
+						E_NOT_OK: No valid data has been received
 Description:		This service provides the Data Length and the received data of the requested
 					CanIfRxSduId to the calling upper layer.
 */
 Std_ReturnType CanIf_ReadRxPduData(PduIdType CanIfRxSduId, PduInfoType* CanIfRxInfoPtr)
+{
+	return E_OK;
+}
 
 /*
-[SWS_CANIF_00202] d
-Service name: CanIf_ReadTxNotifStatus
-Syntax: CanIf_NotifStatusType CanIf_ReadTxNotifStatus(
-PduIdType CanIfTxSduId
-)
-Service ID[hex]: 0x07
-Sync/Async: Synchronous
-Reentrancy: Non Reentrant
-Parameters (in): CanIfTxSduId L-SDU handle to be transmitted.
-This handle specifies the corresponding CAN LSDU
-ID and implicitly the CAN Driver instance as
-well as the corresponding CAN controller device.
-Parameters (inout): None
-Parameters (out): None
-Return value: CanIf_NotifStatus
-Type
-Current confirmation status of the corresponding
-CAN Tx L-PDU.
-Description: This service returns the confirmation status (confirmation occurred or
-not) of a specific static or dynamic CAN Tx L-PDU, requested by the
-CanIfTxSduId.
+[SWS_CANIF_00202]
+Service name:		CanIf_ReadTxNotifStatus
+Syntax:				CanIf_NotifStatusType CanIf_ReadTxNotifStatus(
+						PduIdType CanIfTxSduId)
+Service ID[hex]:	0x07
+Sync/Async:			Synchronous
+Reentrancy:			Non Reentrant
+Parameters (in):	CanIfTxSduId L-SDU handle to be transmitted.
+					This handle specifies the corresponding CAN LSDU
+					ID and implicitly the CAN Driver instance as
+					well as the corresponding CAN controller device.
+Parameters (inout):	None
+Parameters (out):	None
+Return value:		CanIf_NotifStatusType:
+						Current confirmation status of the corresponding CAN Tx L-PDU.
+Description:		This service returns the confirmation status (confirmation occurred or
+					not) of a specific static or dynamic CAN Tx L-PDU, requested by the
+					CanIfTxSduId.
 */
+
+CanIf_NotifStatusType CanIf_ReadTxNotifStatus(PduIdType CanIfTxSduId)
+{
+	return CANIF_NO_NOTIFICATION;
+}
 
 /*
-[SWS_CANIF_00230] d
-Service name: CanIf_ReadRxNotifStatus
-Syntax: CanIf_NotifStatusType CanIf_ReadRxNotifStatus(
-PduIdType CanIfRxSduId
-)
-Service ID[hex]: 0x08
-Sync/Async: Synchronous
-Reentrancy: Non Reentrant
-Parameters (in): CanIfRxSduId Receive L-SDU handle specifying the corresponding
-CAN L-SDU ID and implicitly the CAN Driver instance
-as well as the corresponding CAN controller
-device.
-Parameters (inout): None
-Parameters (out): None
-Return value: CanIf_NotifStatus
-Type
-Current indication status of the corresponding CAN
-Rx L-PDU.
-Description: This service returns the indication status (indication occurred or not) of a
-specific CAN Rx L-PDU, requested by the CanIfRxSduId.
+[SWS_CANIF_00230]
+Service name:		CanIf_ReadRxNotifStatus
+Syntax:				CanIf_NotifStatusType CanIf_ReadRxNotifStatus(
+						PduIdType CanIfRxSduId)
+Service ID[hex]:	0x08
+Sync/Async:			Synchronous
+Reentrancy:			Non Reentrant
+Parameters (in):	CanIfRxSduId Receive L-SDU handle specifying the corresponding
+					CAN L-SDU ID and implicitly the CAN Driver instance
+					as well as the corresponding CAN controller device.
+Parameters (inout):	None
+Parameters (out):	None
+Return value:		CanIf_NotifStatusType
+						Current indication status of the corresponding CAN Rx L-PDU.
+Description:		This service returns the indication status (indication occurred or not) of a
+					specific CAN Rx L-PDU, requested by the CanIfRxSduId.
 */
-
+CanIf_NotifStatusType CanIf_ReadRxNotifStatus(PduIdType CanIfRxSduId)
+{
+	
+}
+						
 /*
 [SWS_CANIF_00008] d
 Service name: CanIf_SetPduMode
@@ -245,20 +280,24 @@ Description: This service reports the current mode of a requested PDU channel.
 
 /*
 [SWS_CANIF_00158] d
-Service name: CanIf_GetVersionInfo
-Syntax: void CanIf_GetVersionInfo(
-Std_VersionInfoType* VersionInfo
-)
-Service ID[hex]: 0x0b
-Sync/Async: Synchronous
-Reentrancy: Reentrant
-Parameters (in): None
-Parameters (inout): None
-Parameters (out): VersionInfo Pointer to where to store the version information of
-this module.
-Return value: None
-Description: This service
+Service name:		CanIf_GetVersionInfo
+Syntax:				void CanIf_GetVersionInfo(
+						Std_VersionInfoType* VersionInfo)
+Service ID[hex]:	0x0b
+Sync/Async:			Synchronous
+Reentrancy:			Reentrant
+Parameters (in):	None
+Parameters (inout):	None
+Parameters (out):	VersionInfo Pointer to where to store the version information of
+						this module.
+Return value:		None
+Description:		This service returns the version information of the called CAN Interface
+					module.
 */
+void CanIf_GetVersionInfo(Std_VersionInfoType* VersionInfo)
+{
+}
+
 
 /*
 [SWS_CANIF_00189] d
@@ -733,3 +772,4 @@ Return value: None
 Description: This service shall inform about the change of the Icom Configuration of
 a CAN controller using the abstract CanIf ControllerId.
 */
+
